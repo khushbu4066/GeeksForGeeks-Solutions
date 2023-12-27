@@ -38,39 +38,32 @@ class Solution
 {
     public int[] antiDiagonalPattern(int[][] matrix)
     {
-    
-     int n = matrix.length;
-     int[] result = new int[n*n];
-     int idx = 0;
-     
-     //Traverse the top array
-     for( int j = 0; j<n; ++j){
-         int row = 0;
-         int col = j;
-         
-         //Traverse teh anti diagonal 
-     while(row<n && col>=0){
-         result[idx++] = matrix[row][col];
-         ++row;
-         --col;
-     }
-
-    }
-    
-    //Traversing the rightmost column(excluding first one)
-    for(int i = 1; i<n; ++i){
-        int row = i; 
-        int col = n-1;
+        int n = matrix.length;
+        int[] result = new int[n*n];
+        int idx = 0;
         
-        //Traversing the anti diagonal 
-    while(row<n && col>=0){
-        result[idx++] = matrix[row][col];
-        ++row;
-        --col;
-    }
-    
-    }
-    return result;
+        for(int i = 0; i<n; ++i){
+            int row = 0;
+            int col = i;
+            
+            while(row<n && col>=0){
+                result[idx++] = matrix[row][col];
+                ++row;
+                --col;
+            }
+        }
+        for(int j = 1; j<n; ++j){
+            int row = j;
+            int col = n-1;
+            
+            while(row<n && col>=0){
+                result[idx++] = matrix[row][col];
+                ++row;
+                --col;
+            }
+        }
+        
+        return result;
 
-}
+    }
 }
