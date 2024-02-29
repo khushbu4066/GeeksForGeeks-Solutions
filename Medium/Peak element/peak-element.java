@@ -52,31 +52,26 @@ class Solution
 	public int peakElement(int[] arr,int n)
     {
        //add code here.
-       int count = 0;
-        int index = 0;
-       for(int i= 0; i<n; i++){
-           count = 0;
+       
+       if(n==1) return 0;
+       if(arr[0] > arr[1]) return 0;
+       if(arr[n-2] < arr[n-1]) return n-1;
+       
+       int l = 0, r = n-1, m;
+       while(l<=r){
+           m = (l + r)/2;
            
-           // curr element is greater than prev
-           if(i-1 >= 0 && arr[i-1] <= arr[i] ){
-               count++;
-           }else if(i-1 < 0){
-               count++;
+           if(arr[m] < arr[m+1]){
+               l = m;
            }
-           
-           // curr element is greater than the next
-           if(i+1 < n && arr[i+1] <= arr[i]){
-               count++;
-           }else if(i+1 > n-1){
-               count++;
+           else if(arr[m] < arr[m-1]){
+               r =m;
            }
-           
-
-           if(count == 2){
-               index = i;
-               break;
+           else{
+               return m;
            }
        }
-       return index;
+       
+       return -1;
     }
 }
