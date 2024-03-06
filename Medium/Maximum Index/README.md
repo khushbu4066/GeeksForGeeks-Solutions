@@ -1,4 +1,4 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/maximum-index-1587115620/1">Maximum Index</a></h2><h3>Difficulty Level : Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 14pt;">Given an array <strong>a</strong> of <strong>n</strong> positive integers. The task is to&nbsp;find the maximum of <strong>j - i</strong> subjected to the constraint of <strong>a[i] <u>&lt;</u> a[j] </strong>and <strong>i <u>&lt;</u>&nbsp;j</strong>.</span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/maximum-index-1587115620/1?timeMachineDate=2024-03-05">Maximum Index</a></h2><h3>Difficulty Level : Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 14pt;">Given an array <strong>a</strong> of <strong>n</strong> positive integers. The task is to&nbsp;find the maximum of <strong>j - i</strong> subjected to the constraint of <strong>a[i] <u>&lt;</u> a[j] </strong>and <strong>i <u>&lt;</u>&nbsp;j</strong>.</span></p>
 <p><span style="font-size: 14pt;"><strong>Example 1:</strong></span></p>
 <pre><span style="font-size: 14pt;"><strong>Input:
 </strong>n = 2
