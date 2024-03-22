@@ -53,25 +53,24 @@ class Solution
     {
        //add code here.
        
-       if(n==1) return 0;
-       if(arr[0] > arr[1]) return 0;
-       if(arr[n-2] < arr[n-1]) return n-1;
+       if(n==1)
+       return 0;
        
-       int l = 0, r = n-1, m;
-       while(l<=r){
-           m = (l + r)/2;
-           
-           if(arr[m] < arr[m+1]){
-               l = m;
+       for(int i = 0; i<n; i++){
+           if(i==0){
+               if(arr[i] >= arr[i+1])
+               return i;
            }
-           else if(arr[m] < arr[m-1]){
-               r =m;
+           else if(i == n-1){
+               if(arr[i] >= arr[i-1]){
+                   return i;
+               }
            }
            else{
-               return m;
+               if(arr[i] >= arr[i-1 ] && arr[i] >= arr[i+1])
+               return i;
            }
        }
-       
        return -1;
     }
 }
