@@ -132,9 +132,10 @@ class Solution {
         if(root.left != null){
             minValue(root.left);
         }
-        if(root.right!=null){
-            minValue(root.right);
-        }
+        // if(root.right!=null){
+        //     minValue(root.right);
+        // }
         return minVal;
     }
+    
 }
