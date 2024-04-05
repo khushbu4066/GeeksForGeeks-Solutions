@@ -31,60 +31,26 @@ class GFG
 // } Driver Code Ends
 
 
-// class Solution
-// {
-//     int t[];
-//     public int solve(int[] nums, int i, int n){
-        
-//         if(i>= n)
-//         return 0;
-        
-//         if(t[i] != -1)
-//         return t[i];
-        
-//         int steal = nums[i] + solve(nums, i+2, n);
-//         int skip = solve(nums,i+1,n);
-        
-//         return Math.max(steal, skip);
-//     }
-//     //Function to find the maximum money the thief can get.
-//     public int FindMaxSum(int nums[], int n)
-//     {
-//         // Your code here
-//         t = new int[101];
-//         Arrays.fill(t, -1);
-//         return solve(nums,0,n);
-        
-//     }
-// }
-
-//Bottom-UP 2nd Approach
-
 class Solution
 {
     //Function to find the maximum money the thief can get.
-    public int FindMaxSum(int nums[], int n)
+    public int FindMaxSum(int arr[], int n)
     {
-        // Your code here
+        if(n==1) return arr[0];
         
         int[] t = new int[n+1];
-        
-        // if(n==1)
-        // return nums[0];
+        Arrays.fill(t, 0);
         
         t[0] = 0;
-        t[1] = nums[0];
+        t[1] = arr[0];
         
         for(int i = 2; i<=n; i++){
             
-            int steal = nums[i-1] + t[i-2];
-            int skip = t[i-1];
+            int steal = arr[i-1] + t[i-2];
+            int skip =  t[i-1];
             
-            t[i] = Math.max(steal,skip);
-            
+            t[i] = Math.max(steal, skip);
         }
-        
         return t[n];
-        
     }
 }
