@@ -38,16 +38,20 @@ class Solution
     {
         
         // your code here
-        if(n <= 1) return 1;
-        int s1 = 1;
-        int s2 = 1;
         
-        for(int i = 2; i <= n; i++) {
-            int s = (s1 + s2) % 1000000007;
-            s1 = s2;
-            s2 = s;
+        if(n==0 || n == 1 || n ==2){
+            return n;
         }
-        return s2;
+        
+        int[] arr = new int[n+1];
+        arr[0] = 0; 
+        arr[1] = 1;
+        arr[2] = 2;
+        
+        for(int i = 3; i<=n; i++){
+            arr[i] = (arr[i-1] + arr[i-2]) % 1000000007;
+        }
+        return arr[n];
     }
 }
 
