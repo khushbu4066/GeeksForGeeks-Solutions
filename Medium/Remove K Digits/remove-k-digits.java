@@ -20,32 +20,45 @@ class GfG {
 // } Driver Code Ends
 
 
+// User function Template for Java
+
 class Solution {
-    public String removeKdigits(String S, int k) {
-        // code here
-        Stack<Character> ms=new Stack<>();
-        for(int i=0;i<S.length();i++){
-            while(!ms.isEmpty() && ms.peek()>S.charAt(i) && k>0){
-                ms.pop();
+    public String removeKdigits(String s, int k) {
+        
+        if(k== 0) return s;
+        
+        if(k == s.length()) return "0";
+        
+        Stack<Character> st = new Stack<>();
+        
+        int n = s.length();
+        for(int i = 0; i<n; i++){
+            char ch = s.charAt(i);
+            
+            while(!st.isEmpty() && k >0 && st.peek() > ch ){
+                st.pop();
                 k--;
             }
-            ms.add(S.charAt(i));
-            // System.out.println(ms);
+            
+            st.push(ch);
         }
-        while(k-->0){
-            ms.pop();
+        
+        for(int i = 0; i<k; i++){
+            st.pop();
         }
-        if(ms.isEmpty())
-        return "0";
-        StringBuilder ans=new StringBuilder();
-        while(!ms.isEmpty()){
-            ans.append(ms.pop()+"");
+        
+        StringBuilder sb = new StringBuilder();
+        while(!st.isEmpty()){
+            sb.append(st.pop());
         }
-        ans=ans.reverse();
-        int index=0;
-        while(index<ans.length()-1 && ans.charAt(index)=='0'){
-            index++;
+        
+        sb.reverse();
+        
+        while(sb.length() > 1 && sb.charAt(0) == '0'){
+            sb.deleteCharAt(0);
         }
-        return ans.substring(index);
+        
+        return sb.toString();
+        
     }
 }
