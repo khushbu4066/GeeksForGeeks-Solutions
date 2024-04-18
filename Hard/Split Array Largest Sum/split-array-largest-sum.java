@@ -30,47 +30,45 @@ class GFG {
 
 
 class Solution {
-    static boolean isFeasible(int[] arr , int N, int K, int mid) {
-        // code here
-        int count = 1;
-        int sum = 0;
+    
+    static boolean isPossible(int[] arr, int mid, int k) {
+        int sub_array = 1, sum = 0;
         
-        for(int i = 0; i<N; i++){
-            if(arr[i] > mid){
-                return false;
-            }
-            if(sum + arr[i] >mid){
-                count++;
-                sum = arr[i];
-            }else{
-                sum += arr[i];
+        for (int num: arr) {
+            sum += num;
+            if (sum > mid) {
+                sub_array++;
+                sum = num;
             }
         }
-        return count <= K;
+        
+        return sub_array <= k;
     }
     
     static int splitArray(int[] arr , int N, int K) {
+        // code here
+        int max = 0, sum = 0;
         
-        int start = 0;
-        int end = 0;
-        
-        for(int i = 0; i<N; i++){
-            end += arr[i]; // Sum of the whole array is the upper bound
+        for (int val: arr) {
+            sum += val;
+            max = Math.max(max, val);
         }
-        int result = Integer.MAX_VALUE;
         
-        while(start <= end){
-            int mid = start + (end-start)/2;
+        if (K == N) return max;
+        
+        int start = max, end = sum, ans = 0;
+        
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
             
-            if(isFeasible(arr,N,K,mid)){
-                
-                result = Math.min(result, mid);
+            if (isPossible(arr, mid, K)) {
+                ans = mid;
                 end = mid - 1;
-            }
-            else{
+            } else {
                 start = mid + 1;
             }
         }
-        return result;
+        
+        return ans;
     }
-};
+}; // best solutio
