@@ -96,3 +96,14 @@ class Solution {
         return false;
     }
 }
+
+
+// We can do this question using many approaches 
+// 1. above I used Floyd cycle detection algo suing slow and fast pointer , when both the pointer will b
+//will be ingg same node that means Linked list having a loop
+
+//2. using Hashing , we can store nodes in hashmap and if node is encountered that is already present than return true;
+// But tc - O(n) and space also, so not suitable
+
+// 3. modification in node structure by adding flag whenever visit the node
+// tc - O(n), sc- O(1)
