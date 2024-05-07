@@ -124,30 +124,40 @@ class Node
     }
 }
 */
-class Solution
-{
+// import java.util.*;
 
-    static ArrayList <Integer> levelOrder(Node root) 
-    {
-        Queue<Node> q = new LinkedList<>() ;
-        ArrayList<Integer> ans = new ArrayList<>();
-        q.add(root);
+// class Node {
+//     int data;
+//     Node left, right;
+
+//     Node(int item) {
+//         data = item;
+//         left = right = null;
+//     }
+// }
+
+class Solution {
+    // Function to return the level order traversal of a tree.
+    static ArrayList<Integer> levelOrder(Node root) {
+        ArrayList<Integer> result = new ArrayList<>();
         
-        while(!q.isEmpty()){
-            Node val = q.poll();
-            ans.add(val.data);
-            if(val.left!=null){
-                q.add(val.left);
-            }
-            if(val.right!=null){
-                q.add(val.right);
-            }
+        if (root == null)
+            return result;
+        
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            Node current = queue.poll();
+            result.add(current.data);
+
+            if (current.left != null)
+                queue.add(current.left);
+
+            if (current.right != null)
+                queue.add(current.right);
         }
-        return ans;
+        
+        return result;
     }
 }
-
-
-
-
-
