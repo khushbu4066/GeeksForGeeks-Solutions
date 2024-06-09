@@ -1,60 +1,107 @@
 //{ Driver Code Starts
-//Initial Template for Java
-
 import java.io.*;
 import java.util.*;
 
-public class Main{
-    static BufferedReader br;
-    static PrintWriter ot;
-    public static void main(String[] args) throws IOException{
-        br = new BufferedReader(new InputStreamReader(System.in));
-        ot = new PrintWriter(System.out);
-        int t = Integer.parseInt(br.readLine().trim());
-        while(t-- > 0){
-            int n = Integer.parseInt(br.readLine().trim());
-            int a[] = new int[n];
-            String s[] = br.readLine().trim().split(" ");
-            for(int i = 0; i < n; i++)
-                a[i] = Integer.parseInt(s[i]);
-            Solution soln = new Solution();
-            soln.zigZag(a, n);
-            boolean bool = isZigZag(a, n);
-            if(bool)
-                ot.println(1);
-            else
-                ot.println(0);
-        }
-        ot.close();
+class IntArray {
+    public static int[] input(BufferedReader br, int n) throws IOException {
+        String[] s = br.readLine().trim().split(" ");
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) a[i] = Integer.parseInt(s[i]);
+
+        return a;
     }
-    static boolean isZigZag(int a[], int n){
-        boolean flag = true;
-        for(int i = 1; i < n; i++){
-            if(flag){
-                if(a[i - 1] > a[i])
-                    return false;
-            } else{
-                if(a[i - 1] < a[i])
-                    return false;
-            }
-            flag = !flag;
-        }
-        return true;
+
+    public static void print(int[] a) {
+        for (int e : a) System.out.print(e + " ");
+        System.out.println();
+    }
+
+    public static void print(ArrayList<Integer> a) {
+        for (int e : a) System.out.print(e + " ");
+        System.out.println();
     }
 }
+
+class GFG {
+
+    public static boolean isZigzag(int n, int[] arr) {
+        int f = 1;
+
+        for (int i = 1; i < n; i++) {
+            if (f == 1) {
+                if (arr[i - 1] > arr[i]) return false;
+            } else {
+                if (arr[i - 1] < arr[i]) return false;
+            }
+            f ^= 1;
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t;
+        t = Integer.parseInt(br.readLine());
+        while (t-- > 0) {
+
+            int n;
+            n = Integer.parseInt(br.readLine());
+
+            int[] arr = IntArray.input(br, n);
+
+            Solution obj = new Solution();
+            obj.zigZag(n, arr);
+            boolean flag = false;
+            for (int i = 0; i < n; i++) {
+                if (arr[i] == i % 2) {
+                    flag = false;
+                } else {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                System.out.println("0");
+            } else {
+
+                boolean check = isZigzag(n, arr);
+                if (check) {
+                    System.out.println("1");
+                } else {
+                    System.out.println("0");
+                }
+            }
+        }
+    }
+}
+
 // } Driver Code Ends
 
 
-//User function Template for Java
 
-class Solution{
-    public void zigZag(int a[], int n){
-        // Code your solution here. 
+class Solution {
+    static void swap(int i, int j, int []arr) {
         
-        Arrays.fill(a, 0);
-        return;
+        //your code here
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    
+    public static void zigZag(int n, int[] arr) {
+        boolean flag = true;
         
-        
-        
+        for(int i = 0; i < n - 1; i++) {
+            if(flag) {
+                if(arr[i] > arr[i + 1])
+                    swap(i, i + 1, arr);
+            } else {
+                if(arr[i] < arr[i + 1])
+                    swap(i, i + 1, arr);
+            }
+            
+            flag = !flag;
+        }
     }
 }
