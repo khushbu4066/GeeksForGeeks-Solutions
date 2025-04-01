@@ -29,15 +29,19 @@ class GFG {
         t = Integer.parseInt(br.readLine());
         while (t-- > 0) {
 
-            int n;
-            n = Integer.parseInt(br.readLine());
+            String input = br.readLine();
+            String[] inputs = input.split(" ");
+            int[] arr = new int[inputs.length];
 
-            int[] arr = IntArray.input(br, n);
-
+            for (int i = 0; i < inputs.length; i++) {
+                arr[i] = Integer.parseInt(inputs[i]);
+            }
             Solution obj = new Solution();
-            int res = obj.largest(n, arr);
+            int res = obj.largest(arr);
 
             System.out.println(res);
+
+            System.out.println("~");
         }
     }
 }
@@ -47,9 +51,20 @@ class GFG {
 
 
 class Solution {
-    public static int largest(int n, int[] arr) {
+    public static int largest(int[] arr) {
         // code here
-        Arrays.sort(arr);
-        return arr[n - 1];
+        int n = arr.length;
+        int largest = arr[0];
+        
+        for(int i = 0; i<n; i++){
+            
+                if(arr[i] > largest){
+                   largest = arr[i];
+                }
+                
+            
+        }
+        return largest;
+       
     }
 }
